@@ -14,7 +14,6 @@ public class FactoryConfiguration {
     private FactoryConfiguration() {
 
         Configuration configuration = new Configuration();
-        configuration.configure();
 
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Patient.class);
@@ -23,7 +22,7 @@ public class FactoryConfiguration {
         configuration.addAnnotatedClass(TherapySession.class);
         configuration.addAnnotatedClass(Payment.class);
 
-        sessionFactory = configuration.buildSessionFactory();
+        sessionFactory = configuration.buildSessionFactory(new org.hibernate.boot.registry.StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build());
     }
 
     public static FactoryConfiguration getInstance(){

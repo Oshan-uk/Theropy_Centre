@@ -11,4 +11,11 @@ public class BCryptUtil {
     public static boolean check(String password, String hash){
         return BCrypt.checkpw(password, hash);
     }
+
+    public static void main(String[] args) {
+
+        System.out.println(
+                BCryptUtil.encrypt("1234")
+        );
+    }
 }

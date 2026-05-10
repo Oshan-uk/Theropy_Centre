@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Pos?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -12,91 +11,61 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="lk.ijse.therapycenter.controller.LoginFormController"
-            prefWidth="1920.0"
-            prefHeight="1080.0"
-            style="-fx-background-color: linear-gradient(to bottom right, #2c3e50, #34495e);">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to bottom right, #2c3e50, #34495e);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.therapycenter.controller.LoginFormController">
 
     <children>
 
-        <StackPane AnchorPane.topAnchor="0.0"
-                   AnchorPane.bottomAnchor="0.0"
-                   AnchorPane.leftAnchor="0.0"
-                   AnchorPane.rightAnchor="0.0">
+        <!-- CENTER CONTAINER -->
+        <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
             <children>
 
-                <VBox alignment="CENTER"
-                      spacing="18"
-                      maxWidth="420"
-                      prefWidth="420"
-                      style="-fx-background-color: white;
-                             -fx-background-radius: 20;
-                             -fx-padding: 40;
-                             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25),20,0,0,8);">
+                <!-- LOGIN CARD -->
+                <VBox alignment="CENTER" maxWidth="420" prefWidth="420" spacing="18" style="-fx-background-color: white;                              -fx-background-radius: 20;                              -fx-padding: 40;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25),20,0,0,8);">
 
                     <children>
 
+                        <!-- TITLE -->
                         <Label text="THERAPY CENTER LOGIN">
                             <font>
-                                <Font size="24"/>
+                                <Font size="24" />
                             </font>
                         </Label>
 
+                        <!-- USERNAME -->
                         <VBox spacing="8">
 
                             <children>
 
-                                <Label text="Username"/>
+                                <Label text="Username" />
 
-                                <TextField fx:id="txtUsername"
-                                           prefHeight="40"
-                                           promptText="Enter username"
-                                           style="-fx-background-radius: 10;
-                                                  -fx-border-radius: 10;
-                                                  -fx-border-color: #dcdde1;"/>
+                                <TextField fx:id="txtUsername" prefHeight="40" promptText="Enter username" style="-fx-background-radius: 10;                                                   -fx-border-radius: 10;                                                   -fx-border-color: #dcdde1;" />
                             </children>
 
                         </VBox>
 
+                        <!-- PASSWORD -->
                         <VBox spacing="8">
 
                             <children>
 
-                                <Label text="Password"/>
+                                <Label text="Password" />
 
-                                <PasswordField fx:id="txtPassword"
-                                               prefHeight="40"
-                                               promptText="Enter password"
-                                               style="-fx-background-radius: 10;
-                                                      -fx-border-radius: 10;
-                                                      -fx-border-color: #dcdde1;"/>
+                                <PasswordField fx:id="txtPassword" prefHeight="40" promptText="Enter password" style="-fx-background-radius: 10;                                                       -fx-border-radius: 10;                                                       -fx-border-color: #dcdde1;" />
                             </children>
 
                         </VBox>
 
-                        <CheckBox fx:id="chkShowPassword"
-                                  text="Show Password"/>
+                        <!-- SHOW PASSWORD -->
+                        <CheckBox fx:id="chkShowPassword" text="Show Password" />
 
-                        <Button fx:id="btnLogin"
-                                mnemonicParsing="false"
-                                prefHeight="45"
-                                prefWidth="340"
-                                style="-fx-background-color: #3498db;
-                                       -fx-text-fill: white;
-                                       -fx-font-size: 15;
-                                       -fx-background-radius: 10;"
-                                text="SIGN IN"/>
+                        <!-- LOGIN BUTTON -->
+                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="45" prefWidth="340" style="-fx-background-color: #3498db;                                        -fx-text-fill: white;                                        -fx-font-size: 15;                                        -fx-background-radius: 10;" text="SIGN IN" />
 
                     </children>
 
                     <padding>
-                        <Insets top="30"
-                                right="30"
-                                bottom="30"
-                                left="30"/>
+                        <Insets bottom="30" left="30" right="30" top="30" />
                     </padding>
 
                 </VBox>
