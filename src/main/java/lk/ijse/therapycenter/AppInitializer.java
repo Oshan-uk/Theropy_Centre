@@ -8,12 +8,17 @@ import javafx.stage.Stage;
 public class AppInitializer extends Application {
 
     @Override
-    public void start(Stage stage)
-            throws Exception {
+    public void start(Stage stage) throws Exception {
 
-        stage.setScene(
-                new Scene(FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml")))
+        Scene scene = new Scene(
+                FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"))
         );
+
+        stage.setScene(scene);
+
+        stage.setFullScreen(true);
+
+        stage.setTitle("Therapy Center");
 
         stage.show();
     }
