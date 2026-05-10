@@ -1,20 +1,18 @@
 package lk.ijse.therapycenter.dto;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 
 public class PatientDTO {
 
-    @Getter
     private String patientId;
-    @Getter
     private String name;
-    @Getter
     private String email;
-    @Getter
     private String phone;
-    @Getter
     private String address;
-
-
-
 }
