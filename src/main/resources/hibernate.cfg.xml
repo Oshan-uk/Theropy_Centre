@@ -22,6 +22,7 @@
 
         <property name="hbm2ddl.auto">update</property>
 
+        <mapping class="lk.ijse.therapycenter.entity.Patient"/>
     </session-factory>
 
 </hibernate-configuration>
