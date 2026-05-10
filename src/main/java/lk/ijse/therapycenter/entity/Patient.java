@@ -1,35 +1,30 @@
 package lk.ijse.therapycenter.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "patient")
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+
 public class Patient {
 
     @Id
     private String patientId;
 
-    @Setter
-    @Getter
     private String name;
     private String email;
     private String phone;
     private String address;
 
-    public Patient() {
-    }
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
 
-    public Patient(String patientId, String name, String email, String phone, String address) {
-
-        this.patientId = patientId;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-    }
-
+    private List<TherapySession> sessions;
 }
