@@ -14,6 +14,7 @@ module lk.ijse.therapycenter {
 
     requires java.naming;
     requires java.sql;
+    requires static lombok;
 
 
     opens lk.ijse.therapycenter to javafx.fxml;

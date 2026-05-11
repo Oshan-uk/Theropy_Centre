@@ -15,7 +15,7 @@ public class AppInitializer extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Parent root = FXMLLoader.load(
-                getClass().getResource("/lk/ijse/therapycenter/Login.fxml"));
+                getClass().getResource("/view/Login.fxml"));
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("Serenity Mental Health Therapy Center");
