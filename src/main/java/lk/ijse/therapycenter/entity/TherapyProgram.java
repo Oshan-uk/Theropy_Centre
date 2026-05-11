@@ -1,10 +1,15 @@
 package lk.ijse.therapycenter.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
+@Setter
+@Getter
 @Entity
 @Table(name = "therapy_programs")
 public class TherapyProgram {
@@ -38,21 +43,4 @@ public class TherapyProgram {
         this.description = description;
     }
 
-    public String getProgramId() { return programId; }
-    public void setProgramId(String programId) { this.programId = programId; }
-
-    public String getProgramName() { return programName; }
-    public void setProgramName(String programName) { this.programName = programName; }
-
-    public String getDuration() { return duration; }
-    public void setDuration(String duration) { this.duration = duration; }
-
-    public double getFee() { return fee; }
-    public void setFee(double fee) { this.fee = fee; }
-
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public List<TherapySession> getSessions() { return sessions; }
-    public void setSessions(List<TherapySession> sessions) { this.sessions = sessions; }
 }
