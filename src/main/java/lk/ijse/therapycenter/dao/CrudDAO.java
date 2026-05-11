@@ -2,15 +2,11 @@ package lk.ijse.therapycenter.dao;
 
 import java.util.List;
 
-public interface CrudDAO<T> {
 
-    boolean save(T dto);
-
-    boolean update(T dto);
-
-    boolean delete(String id);
-
-    T search(String id);
-
-    List<T> getAll();
+public interface CrudDAO<T, ID> {
+    boolean save(T entity);
+    boolean update(T entity);
+    boolean delete(ID id);
+    T findById(ID id);
+    List<T> findAll();
 }
