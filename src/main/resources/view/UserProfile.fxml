@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lk.ijse.therapycenter.controller.UserProfileController"
+            prefWidth="500" prefHeight="440">
+
+    <VBox spacing="18" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="30"
+          AnchorPane.rightAnchor="30">
+
+        <Label text="My Profile"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <!-- Current user info -->
+        <HBox spacing="20">
+            <Label fx:id="lblCurrentUser" text="Username: —"
+                   style="-fx-font-size: 13px;"/>
+            <Label fx:id="lblRole" text="Role: —"
+                   style="-fx-font-size: 13px; -fx-text-fill: #7f8c8d;"/>
+        </HBox>
+
+        <Separator/>
+
+        <!-- Change username -->
+        <Label text="Change Username"
+               style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="txtNewUsername" promptText="New username" prefWidth="220"/>
+            <Button text="Update Username" prefWidth="130"
+                    onAction="#onChangeUsernameClicked"
+                    style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
+        </HBox>
+        <Label fx:id="lblUsernameMsg" text=""/>
+
+        <Separator/>
+
+        <!-- Change password -->
+        <Label text="Change Password"
+               style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+
+        <GridPane hgap="10" vgap="8">
+            <Label text="Current Password:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <PasswordField fx:id="txtOldPassword" prefWidth="180"
+                           GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtOldPasswordVisible" prefWidth="180" visible="false" managed="false"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <CheckBox fx:id="chkShowOldPass" text="Show"
+                      GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+
+            <Label text="New Password:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <PasswordField fx:id="txtNewPassword" prefWidth="180"
+                           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtNewPasswordVisible" prefWidth="180" visible="false" managed="false"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <CheckBox fx:id="chkShowNewPass" text="Show"
+                      GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+
+            <Label text="Confirm Password:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <PasswordField fx:id="txtConfirmPassword" prefWidth="180"
+                           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        </GridPane>
+
+        <Button text="Change Password" prefWidth="140"
+                onAction="#onChangePasswordClicked"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+
+        <Label fx:id="lblPasswordMsg" text=""/>
+
+    </VBox>
+</AnchorPane>

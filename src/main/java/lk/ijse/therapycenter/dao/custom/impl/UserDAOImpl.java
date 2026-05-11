@@ -1,6 +1,6 @@
 package lk.ijse.therapycenter.dao.custom.impl;
 
-import lk.ijse.therapycenter.config.HibernateUtil;
+import lk.ijse.therapycenter.config.FactoryConfiguration;
 import lk.ijse.therapycenter.dao.custom.UserDAO;
 import lk.ijse.therapycenter.entity.User;
 import org.hibernate.Session;
@@ -14,7 +14,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean save(User user) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             tx = session.beginTransaction();
             session.persist(user);
             tx.commit();
@@ -29,7 +29,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean update(User user) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             tx = session.beginTransaction();
             session.merge(user);
             tx.commit();
@@ -44,7 +44,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean delete(Integer id) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             tx = session.beginTransaction();
             User user = session.get(User.class, id);
             if (user != null) {
@@ -62,21 +62,21 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User findById(Integer id) {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             return session.get(User.class, id);
         }
     }
 
     @Override
     public List<User> findAll() {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             return session.createQuery("FROM User", User.class).list();
         }
     }
 
     @Override
     public User findByUsername(String username) {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             Query<User> q = session.createQuery("FROM User WHERE username = :uname", User.class);
             q.setParameter("uname", username);
             return q.uniqueResult();
@@ -85,7 +85,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean existsByUsername(String username) {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             Query<Long> q = session.createQuery("SELECT COUNT(u) FROM User u WHERE u.username = :uname", Long.class);
             q.setParameter("uname", username);
             return q.uniqueResult() > 0;
@@ -94,7 +94,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean existsByEmail(String email) {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             Query<Long> q = session.createQuery("SELECT COUNT(u) FROM User u WHERE u.email = :email", Long.class);
             q.setParameter("email", email);
             return q.uniqueResult() > 0;

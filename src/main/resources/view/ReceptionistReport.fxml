@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lk.ijse.therapycenter.controller.ReceptionistReportController"
+            prefWidth="860" prefHeight="600">
+
+    <VBox spacing="12" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+          AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+
+        <Label text="Financial Reports"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <!-- Summary -->
+        <HBox spacing="30">
+            <Label fx:id="lblTotalRevenue" text="Total Revenue: —"
+                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+            <Label fx:id="lblPaidCount" text="Paid: —"
+                   style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+            <Label fx:id="lblPendingCount" text="Pending: —"
+                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #e67e22;"/>
+        </HBox>
+
+        <!-- Filter buttons -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button text="All Payments" onAction="#onShowAllClicked"
+                    style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
+            <Button text="Pending Only" onAction="#onShowPendingClicked"
+                    style="-fx-background-color: #e67e22; -fx-text-fill: white;"/>
+            <ComboBox fx:id="cmbFilterPatient" prefWidth="200" promptText="Filter by patient"/>
+            <Button text="Filter" onAction="#onFilterByPatientClicked"
+                    style="-fx-background-color: #8e44ad; -fx-text-fill: white;"/>
+            <Button text="Refresh" onAction="#onRefreshClicked"/>
+        </HBox>
+
+        <!-- Payments table -->
+        <Label text="Payment Records"
+               style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+        <TableView fx:id="tblPayments" prefHeight="220">
+            <columns>
+                <TableColumn fx:id="colInvoice" text="Invoice No." prefWidth="140"/>
+                <TableColumn fx:id="colPatient" text="Patient" prefWidth="150"/>
+                <TableColumn fx:id="colAmount" text="Amount (LKR)" prefWidth="120"/>
+                <TableColumn fx:id="colDate" text="Date" prefWidth="110"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="90"/>
+                <TableColumn fx:id="colMethod" text="Method" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <!-- Patient therapy history — read only -->
+        <Label text="Patient Therapy History (Read-Only)"
+               style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+        <TableView fx:id="tblPatients" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colPatientName" text="Patient Name" prefWidth="250"/>
+                <TableColumn fx:id="colRegDate" text="Registration Date" prefWidth="180"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+</AnchorPane>

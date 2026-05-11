@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lk.ijse.therapycenter.controller.AdminDashboardController"
+            prefWidth="900" prefHeight="620">
+
+    <!-- Top bar -->
+    <top>
+        <HBox style="-fx-background-color: #2c3e50; -fx-padding: 12 20;"
+              spacing="20" alignment="CENTER_LEFT">
+            <Label text="🏥 Serenity Therapy Center — Admin"
+                   style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;"/>
+            <Label fx:id="lblWelcome"
+                   style="-fx-text-fill: #bdc3c7; -fx-font-size: 12px;"/>
+        </HBox>
+    </top>
+
+    <!-- Left sidebar navigation -->
+    <left>
+        <VBox style="-fx-background-color: #34495e; -fx-padding: 20 0;"
+              spacing="4" prefWidth="180">
+            <Button text="👨‍⚕️  Therapists" prefWidth="180"
+                    onAction="#onTherapistsClicked"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER-LEFT; -fx-padding: 10 20;"/>
+            <Button text="📋  Programs" prefWidth="180"
+                    onAction="#onProgramsClicked"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER-LEFT; -fx-padding: 10 20;"/>
+            <Button text="📊  Reports" prefWidth="180"
+                    onAction="#onReportsClicked"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER-LEFT; -fx-padding: 10 20;"/>
+            <Button text="👤  My Profile" prefWidth="180"
+                    onAction="#onProfileClicked"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER-LEFT; -fx-padding: 10 20;"/>
+            <Button text="🚪  Logout" prefWidth="180"
+                    onAction="#onLogoutClicked"
+                    style="-fx-background-color: transparent; -fx-text-fill: #e74c3c; -fx-alignment: CENTER-LEFT; -fx-padding: 10 20;"/>
+        </VBox>
+    </left>
+
+    <!-- Center — sub-screens load here -->
+    <center>
+        <AnchorPane fx:id="contentPane"
+                    style="-fx-background-color: #ecf0f1; -fx-padding: 20;">
+            <Label text="Select a menu item to get started."
+                   style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"
+                   AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20"/>
+        </AnchorPane>
+    </center>
+
+</BorderPane>

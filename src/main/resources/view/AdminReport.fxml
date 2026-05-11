@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lk.ijse.therapycenter.controller.AdminReportController"
+            prefWidth="860" prefHeight="600">
+
+    <VBox spacing="12" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+          AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+
+        <Label text="Admin Reports"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <!-- Summary row -->
+        <HBox spacing="30">
+            <Label fx:id="lblTotalTherapists" text="Total Therapists: —"
+                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #16a085;"/>
+            <Label fx:id="lblTotalPrograms" text="Total Programs: —"
+                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #8e44ad;"/>
+            <Label fx:id="lblTotalSessions" text="Total Sessions: —"
+                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #2980b9;"/>
+            <Button text="Refresh" onAction="#onRefreshClicked"/>
+        </HBox>
+
+        <!-- Therapist table -->
+        <Label text="All Therapists"
+               style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+        <TableView fx:id="tblTherapists" prefHeight="160">
+            <columns>
+                <TableColumn fx:id="colTherapistName" text="Name" prefWidth="200"/>
+                <TableColumn fx:id="colSpecialization" text="Specialization" prefWidth="200"/>
+                <TableColumn fx:id="colAvailable" text="Available" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <!-- Patients in all programs -->
+        <Label text="Patients Enrolled in ALL Programs (HQL Query Result)"
+               style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #c0392b;"/>
+        <TableView fx:id="tblAllProgramPatients" prefHeight="140">
+            <columns>
+                <TableColumn fx:id="colPatientName" text="Patient Name" prefWidth="200"/>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                <TableColumn fx:id="colPhone" text="Phone" prefWidth="130"/>
+            </columns>
+        </TableView>
+
+        <!-- Patient → Program mapping -->
+        <Label text="Patient → Enrolled Programs (JPQL Join Fetch)"
+               style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #16a085;"/>
+        <TableView fx:id="tblPatientPrograms" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colPName" text="Patient Name" prefWidth="200"/>
+                <TableColumn fx:id="colProgramList" text="Programs Enrolled" prefWidth="500"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+</AnchorPane>

@@ -1,6 +1,6 @@
 package lk.ijse.therapycenter.dao.custom.impl;
 
-import lk.ijse.therapycenter.config.HibernateUtil;
+import lk.ijse.therapycenter.config.FactoryConfiguration;
 import lk.ijse.therapycenter.dao.custom.TherapySessionDAO;
 import lk.ijse.therapycenter.entity.TherapySession;
 import org.hibernate.Session;
@@ -16,7 +16,7 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
     @Override
     public boolean save(TherapySession ts) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             tx = session.beginTransaction();
             session.persist(ts);
             tx.commit();
@@ -31,7 +31,7 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
     @Override
     public boolean update(TherapySession ts) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             tx = session.beginTransaction();
             session.merge(ts);
             tx.commit();
@@ -46,7 +46,7 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
     @Override
     public boolean delete(Integer id) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             tx = session.beginTransaction();
             TherapySession ts = session.get(TherapySession.class, id);
             if (ts != null) {
@@ -64,14 +64,14 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
 
     @Override
     public TherapySession findById(Integer id) {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             return session.get(TherapySession.class, id);
         }
     }
 
     @Override
     public List<TherapySession> findAll() {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             return session.createQuery(
                     "FROM TherapySession ORDER BY sessionDate DESC", TherapySession.class).list();
         }
@@ -79,7 +79,7 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
 
     @Override
     public List<TherapySession> findByPatient(int patientId) {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             Query<TherapySession> q = session.createQuery(
                     "FROM TherapySession ts WHERE ts.patient.id = :pid ORDER BY ts.sessionDate DESC",
                     TherapySession.class);
@@ -90,7 +90,7 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
 
     @Override
     public List<TherapySession> findByTherapist(int therapistId) {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             Query<TherapySession> q = session.createQuery(
                     "FROM TherapySession ts WHERE ts.therapist.id = :tid ORDER BY ts.sessionDate",
                     TherapySession.class);
@@ -101,7 +101,7 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
 
     @Override
     public boolean hasConflict(int therapistId, LocalDate date, LocalTime time, int excludeSessionId) {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             Query<Long> q = session.createQuery(
                     "SELECT COUNT(ts) FROM TherapySession ts " +
                             "WHERE ts.therapist.id = :tid " +

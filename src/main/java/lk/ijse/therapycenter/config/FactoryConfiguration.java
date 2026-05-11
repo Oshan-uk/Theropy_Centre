@@ -5,33 +5,44 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+
 public class FactoryConfiguration {
 
-    private static FactoryConfiguration instance;
+    private static SessionFactory sessionFactory;
 
-    private final SessionFactory sessionFactory;
+    private FactoryConfiguration() {}
 
-    private FactoryConfiguration() {
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            try {
+                Configuration config = new Configuration();
 
-        Configuration configuration = new Configuration();
+                config.configure();
 
-        configuration.addAnnotatedClass(User.class);
-        configuration.addAnnotatedClass(Patient.class);
-        configuration.addAnnotatedClass(Therapist.class);
-        configuration.addAnnotatedClass(TherapyProgram.class);
-        configuration.addAnnotatedClass(TherapySession.class);
-        configuration.addAnnotatedClass(Payment.class);
+                config.addAnnotatedClass(User.class);
+                config.addAnnotatedClass(Therapist.class);
+                config.addAnnotatedClass(TherapyProgram.class);
+                config.addAnnotatedClass(Patient.class);
+                config.addAnnotatedClass(TherapySession.class);
+                config.addAnnotatedClass(Payment.class);
 
-        sessionFactory = configuration.buildSessionFactory(new org.hibernate.boot.registry.StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build());
+                sessionFactory = config.buildSessionFactory();
+
+            } catch (Exception e) {
+                System.err.println("Failed to build SessionFactory: " + e.getMessage());
+                throw new ExceptionInInitializerError(e);
+            }
+        }
+        return sessionFactory;
     }
 
-    public static FactoryConfiguration getInstance(){
-
-        return instance == null ? instance = new FactoryConfiguration() : instance;
+    public static Session getSession() {
+        return getSessionFactory().openSession();
     }
 
-    public Session getSession(){
-
-        return sessionFactory.openSession();
+    public static void shutdown() {
+        if (sessionFactory != null && !sessionFactory.isClosed()) {
+            sessionFactory.close();
+        }
     }
 }

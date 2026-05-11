@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lk.ijse.therapycenter.controller.PatientController"
+            prefWidth="860" prefHeight="580">
+
+    <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+          AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+
+        <Label text="Patient Management"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <!-- Form -->
+        <GridPane hgap="12" vgap="10">
+            <Label text="Full Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtName" prefWidth="220"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Email:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtEmail" prefWidth="220"
+                       GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Label text="Phone:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtPhone" prefWidth="220"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Date of Birth:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <DatePicker fx:id="dpDOB" prefWidth="220"
+                        GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            <Label text="Address:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="txtAddress" prefWidth="220"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Medical History:" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <TextArea fx:id="txtMedicalHistory" prefWidth="220" prefHeight="60"
+                      GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+        </GridPane>
+
+        <!-- Buttons and message -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button text="Save" prefWidth="100" onAction="#onSaveClicked"
+                    style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+            <Button text="Delete" prefWidth="100" onAction="#onDeleteClicked"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+            <Button text="Clear" prefWidth="100" onAction="#onClearClicked"/>
+            <TextField fx:id="txtSearch" promptText="Search by name..." prefWidth="200"/>
+            <Button text="Search" prefWidth="80" onAction="#onSearchClicked"
+                    style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
+            <Label fx:id="lblMessage" text=""/>
+        </HBox>
+
+        <!-- Table -->
+        <TableView fx:id="tblPatients" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colName" text="Full Name" prefWidth="160"/>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
+                <TableColumn fx:id="colPhone" text="Phone" prefWidth="120"/>
+                <TableColumn fx:id="colDOB" text="Date of Birth" prefWidth="120"/>
+                <TableColumn fx:id="colRegDate" text="Registered" prefWidth="110"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+</AnchorPane>

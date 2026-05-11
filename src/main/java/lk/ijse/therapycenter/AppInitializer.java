@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import lk.ijse.therapycenter.config.HibernateUtil;
+import lk.ijse.therapycenter.config.FactoryConfiguration;
 
 
 
@@ -22,12 +22,13 @@ public class AppInitializer extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+        primaryStage.isFullScreen();
     }
 
     @Override
     public void stop() {
 
-        HibernateUtil.shutdown();
+        FactoryConfiguration.shutdown();
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package lk.ijse.therapycenter.dao.custom.impl;
 
-import lk.ijse.therapycenter.config.HibernateUtil;
+import lk.ijse.therapycenter.config.FactoryConfiguration;
 import lk.ijse.therapycenter.dao.custom.TherapistDAO;
 import lk.ijse.therapycenter.entity.Therapist;
 import org.hibernate.Session;
@@ -14,7 +14,7 @@ public class TherapistDAOImpl implements TherapistDAO {
     @Override
     public boolean save(Therapist therapist) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             tx = session.beginTransaction();
             session.persist(therapist);
             tx.commit();
@@ -29,7 +29,7 @@ public class TherapistDAOImpl implements TherapistDAO {
     @Override
     public boolean update(Therapist therapist) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             tx = session.beginTransaction();
             session.merge(therapist);
             tx.commit();
@@ -44,7 +44,7 @@ public class TherapistDAOImpl implements TherapistDAO {
     @Override
     public boolean delete(Integer id) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             tx = session.beginTransaction();
             Therapist t = session.get(Therapist.class, id);
             if (t != null) {
@@ -62,21 +62,21 @@ public class TherapistDAOImpl implements TherapistDAO {
 
     @Override
     public Therapist findById(Integer id) {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             return session.get(Therapist.class, id);
         }
     }
 
     @Override
     public List<Therapist> findAll() {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             return session.createQuery("FROM Therapist ORDER BY fullName", Therapist.class).list();
         }
     }
 
     @Override
     public List<Therapist> findAvailable() {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             return session.createQuery(
                     "FROM Therapist t WHERE t.available = true ORDER BY t.fullName", Therapist.class).list();
         }
@@ -84,7 +84,7 @@ public class TherapistDAOImpl implements TherapistDAO {
 
     @Override
     public boolean existsByEmail(String email) {
-        try (Session session = HibernateUtil.getSession()) {
+        try (Session session = FactoryConfiguration.getSession()) {
             Query<Long> q = session.createQuery(
                     "SELECT COUNT(t) FROM Therapist t WHERE t.email = :email", Long.class);
             q.setParameter("email", email);
