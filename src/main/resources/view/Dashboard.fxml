@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lk.ijse.therapycenter.controller.DashboardController"
+            prefWidth="1920" prefHeight="1080">
+
+    <top>
+        <HBox spacing="20"
+              style="-fx-background-color:#2c3e50; -fx-padding:15;">
+            <Label text="THERAPY CENTER SYSTEM"
+                   style="-fx-text-fill:white; -fx-font-size:18;"/>
+
+            <Button text="Logout"
+                    style="-fx-background-color:red; -fx-text-fill:white;"
+                    onAction="#btnLogoutOnAction"/>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox spacing="10"
+              style="-fx-background-color:#34495e; -fx-padding:20;"
+              prefWidth="250">
+
+            <Button text="Patients" onAction="#openPatientForm"/>
+            <Button text="Therapists" onAction="#openTherapistForm"/>
+            <Button text="Programs" onAction="#openProgramForm"/>
+            <Button text="Sessions" onAction="#openSessionForm"/>
+            <Button text="Payments" onAction="#openPaymentForm"/>
+
+        </VBox>
+    </left>
+
+    <center>
+        <AnchorPane fx:id="centerPane"
+                    style="-fx-background-color:#ecf0f1;"/>
+    </center>
+
+</BorderPane>

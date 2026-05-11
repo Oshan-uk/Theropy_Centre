@@ -15,24 +15,20 @@
 
     <children>
 
-        <!-- CENTER CONTAINER -->
         <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
             <children>
 
-                <!-- LOGIN CARD -->
                 <VBox alignment="CENTER" maxWidth="420" prefWidth="420" spacing="18" style="-fx-background-color: white;                              -fx-background-radius: 20;                              -fx-padding: 40;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25),20,0,0,8);">
 
                     <children>
 
-                        <!-- TITLE -->
                         <Label text="THERAPY CENTER LOGIN">
                             <font>
                                 <Font size="24" />
                             </font>
                         </Label>
 
-                        <!-- USERNAME -->
                         <VBox spacing="8">
 
                             <children>
@@ -44,7 +40,6 @@
 
                         </VBox>
 
-                        <!-- PASSWORD -->
                         <VBox spacing="8">
 
                             <children>
@@ -56,10 +51,8 @@
 
                         </VBox>
 
-                        <!-- SHOW PASSWORD -->
                         <CheckBox fx:id="chkShowPassword" text="Show Password" />
 
-                        <!-- LOGIN BUTTON -->
                         <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="45" prefWidth="340" style="-fx-background-color: #3498db;                                        -fx-text-fill: white;                                        -fx-font-size: 15;                                        -fx-background-radius: 10;" text="SIGN IN" />
 
                     </children>
