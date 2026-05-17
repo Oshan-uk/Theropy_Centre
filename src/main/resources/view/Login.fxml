@@ -1,42 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.therapycenter.controller.LoginController"
-            prefWidth="420" prefHeight="320"
-            style="-fx-background-color: #f0f4f8;">
+<AnchorPane prefHeight="582.0" prefWidth="798.0" style="-fx-background-color: #f0f4f8;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.therapycenter.controller.LoginController">
 
-    <VBox alignment="CENTER" spacing="14"
-          AnchorPane.topAnchor="30" AnchorPane.bottomAnchor="30"
-          AnchorPane.leftAnchor="60" AnchorPane.rightAnchor="60">
+    <VBox alignment="CENTER" spacing="14" AnchorPane.bottomAnchor="30" AnchorPane.leftAnchor="60" AnchorPane.rightAnchor="60" AnchorPane.topAnchor="30">
 
-        <Label text="Serenity Mental Health Therapy Center"
-               style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Label prefHeight="55.0" prefWidth="380.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Serenity Mental Health Therapy Center" />
 
-        <Label text="Please log in to continue"
-               style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+        <Label style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;" text="Please log in to continue" />
 
-        <TextField fx:id="txtUsername" promptText="Username" maxWidth="280"/>
+        <TextField fx:id="txtUsername" maxWidth="280" promptText="Username" />
 
         <!-- Password hidden by default -->
-        <PasswordField fx:id="txtPassword" promptText="Password" maxWidth="280"/>
+        <PasswordField fx:id="txtPassword" maxWidth="280" promptText="Password" />
 
         <!-- Password shown when checkbox is ticked -->
-        <TextField fx:id="txtPasswordVisible" promptText="Password"
-                   maxWidth="280" visible="false" managed="false"/>
+        <TextField fx:id="txtPasswordVisible" managed="false" maxWidth="280" promptText="Password" visible="false" />
 
-        <CheckBox fx:id="chkShowPassword" text="Show password"/>
+        <CheckBox fx:id="chkShowPassword" text="Show password" />
 
-        <Label fx:id="lblError" text="" style="-fx-text-fill: red; -fx-font-size: 11px;"/>
+        <Label fx:id="lblError" style="-fx-text-fill: red; -fx-font-size: 11px;" text="" />
 
-        <HBox spacing="10" alignment="CENTER">
-            <Button text="Login" prefWidth="120" onAction="#onLoginClicked"
-                    style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
-            <Button text="Clear" prefWidth="80" onAction="#onClearClicked"/>
+        <HBox alignment="CENTER" spacing="10">
+            <Button onAction="#onLoginClicked" prefWidth="120" style="-fx-background-color: #2980b9; -fx-text-fill: white;" text="Login" />
+            <Button onAction="#onClearClicked" prefWidth="80" text="Clear" />
         </HBox>
 
     </VBox>

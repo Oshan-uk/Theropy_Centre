@@ -1,8 +1,8 @@
 package lk.ijse.therapycenter.bo.custom.impl;
 
 import lk.ijse.therapycenter.bo.custom.TherapistBO;
+import lk.ijse.therapycenter.dao.DAOFactory;
 import lk.ijse.therapycenter.dao.custom.TherapistDAO;
-import lk.ijse.therapycenter.dao.custom.impl.TherapistDAOImpl;
 import lk.ijse.therapycenter.dto.TherapistDTO;
 import lk.ijse.therapycenter.entity.Therapist;
 import lk.ijse.therapycenter.exception.RegistrationException;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class TherapistBOImpl implements TherapistBO {
 
-    private final TherapistDAO therapistDAO = new TherapistDAOImpl();
+    private final TherapistDAO therapistDAO = DAOFactory.getDAO(DAOFactory.DAOTypes.THERAPIST);
 
     @Override
     public boolean addTherapist(TherapistDTO dto) throws RegistrationException {
@@ -72,7 +72,7 @@ public class TherapistBOImpl implements TherapistBO {
         if (!ValidationUtil.isValidEmail(dto.getEmail())) {
             throw new RegistrationException("Please enter a valid email.");
         }
-        if (!ValidationUtil.isValidSriLankaPhone(dto.getPhone())) {
+        if (!ValidationUtil.isValidPhone(dto.getPhone())) {
             throw new RegistrationException("Please enter a valid phone number (e.g. 0771234567).");
         }
         if (dto.getSpecialization() == null || dto.getSpecialization().trim().isEmpty()) {

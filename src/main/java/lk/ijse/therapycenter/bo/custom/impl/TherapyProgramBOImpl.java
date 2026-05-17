@@ -1,6 +1,7 @@
 package lk.ijse.therapycenter.bo.custom.impl;
 
 import lk.ijse.therapycenter.bo.custom.TherapyProgramBO;
+import lk.ijse.therapycenter.dao.DAOFactory;
 import lk.ijse.therapycenter.dao.custom.TherapyProgramDAO;
 import lk.ijse.therapycenter.dao.custom.impl.TherapyProgramDAOImpl;
 import lk.ijse.therapycenter.dto.TherapyProgramDTO;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class TherapyProgramBOImpl implements TherapyProgramBO {
 
-    private final TherapyProgramDAO programDAO = new TherapyProgramDAOImpl();
+    private final TherapyProgramDAO programDAO = DAOFactory.getDAO(DAOFactory.DAOTypes.THERAPY_PROGRAM);
 
     @Override
     public boolean addProgram(TherapyProgramDTO dto) throws RegistrationException {

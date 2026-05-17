@@ -23,31 +23,21 @@ public class ReceptionistDashboardController {
         lblWelcome.setText("Welcome, " + user.getUsername() + "  |  Role: " + user.getRole());
     }
 
-    @FXML
-    public void onPatientsClicked(ActionEvent event) {
-        loadScreen("/lk/ijse/therapycenter/Patient.fxml");
-    }
 
     @FXML
-    public void onSessionsClicked(ActionEvent event) {
-        loadScreen("/lk/ijse/therapycenter/TherapySession.fxml");
-    }
-
+    public void onPatientsClicked(ActionEvent event)  { loadScreen("/view/Patient.fxml"); }
     @FXML
-    public void onPaymentsClicked(ActionEvent event) {
-        loadScreen("/lk/ijse/therapycenter/Payment.fxml");
-    }
-
+    public void onSessionsClicked(ActionEvent event)  { loadScreen("/view/TherapySession.fxml"); }
     @FXML
-    public void onReportsClicked(ActionEvent event) {
-        loadScreen("/lk/ijse/therapycenter/ReceptionistReport.fxml");
-    }
+    public void onPaymentsClicked(ActionEvent event)  { loadScreen("/view/Payment.fxml"); }
+    @FXML
+    public void onReportsClicked(ActionEvent event)   { loadScreen("/view/ReceptionistReport.fxml"); }
 
     @FXML
     public void onProfileClicked(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/lk/ijse/therapycenter/UserProfile.fxml"));
+                    getClass().getResource("/view/UserProfile.fxml"));
             Parent root = loader.load();
 
             UserProfileController profileCtrl = loader.getController();

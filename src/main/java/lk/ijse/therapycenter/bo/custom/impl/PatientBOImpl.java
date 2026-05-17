@@ -2,20 +2,21 @@ package lk.ijse.therapycenter.bo.custom.impl;
 
 import lk.ijse.therapycenter.bo.custom.PatientBO;
 import lk.ijse.therapycenter.dao.custom.PatientDAO;
-import lk.ijse.therapycenter.dao.custom.impl.PatientDAOImpl;
 import lk.ijse.therapycenter.dto.PatientDTO;
 import lk.ijse.therapycenter.dto.TherapyProgramDTO;
 import lk.ijse.therapycenter.entity.Patient;
 import lk.ijse.therapycenter.entity.TherapySession;
 import lk.ijse.therapycenter.exception.RegistrationException;
 import lk.ijse.therapycenter.util.ValidationUtil;
+import lk.ijse.therapycenter.dao.DAOFactory;
+import lk.ijse.therapycenter.dao.DAOFactory.DAOTypes;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class PatientBOImpl implements PatientBO {
 
-    private final PatientDAO patientDAO = new PatientDAOImpl();
+    private final PatientDAO patientDAO = DAOFactory.getDAO(DAOTypes.PATIENT);
 
     @Override
     public boolean addPatient(PatientDTO dto) throws RegistrationException {
@@ -105,7 +106,7 @@ public class PatientBOImpl implements PatientBO {
         if (!ValidationUtil.isValidEmail(dto.getEmail())) {
             throw new RegistrationException("Please enter a valid email address.");
         }
-        if (!ValidationUtil.isValidSriLankaPhone(dto.getPhone())) {
+        if (!ValidationUtil.isValidPhone(dto.getPhone())) {
             throw new RegistrationException("Please enter a valid Sri Lanka phone number (e.g. 0771234567).");
         }
         if (dto.getDateOfBirth() == null) {

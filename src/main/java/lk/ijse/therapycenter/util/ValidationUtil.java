@@ -24,7 +24,7 @@ public class ValidationUtil {
         return email != null && EMAIL_PATTERN.matcher(email.trim()).matches();
     }
 
-    public static boolean isValidSriLankaPhone(String phone) {
+    public static boolean isValidPhone(String phone) {
         return phone != null && SRI_LANKA_PHONE.matcher(phone.trim()).matches();
     }
 

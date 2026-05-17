@@ -1,18 +1,20 @@
 package lk.ijse.therapycenter.bo.custom.impl;
 
 import lk.ijse.therapycenter.bo.custom.UserBO;
+import lk.ijse.therapycenter.dao.DAOFactory;
 import lk.ijse.therapycenter.dao.custom.UserDAO;
 import lk.ijse.therapycenter.dao.custom.impl.UserDAOImpl;
 import lk.ijse.therapycenter.dto.UserDTO;
 import lk.ijse.therapycenter.entity.User;
 import lk.ijse.therapycenter.exception.LoginException;
 import lk.ijse.therapycenter.exception.RegistrationException;
+import lk.ijse.therapycenter.util.PasswordUtil;
 import lk.ijse.therapycenter.util.ValidationUtil;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class UserBOImpl implements UserBO {
 
-    private final UserDAO userDAO = new UserDAOImpl();
+    private final UserDAO userDAO = DAOFactory.getDAO(DAOFactory.DAOTypes.USER);
 
     @Override
     public UserDTO login(String username, String plainPassword) throws LoginException {
@@ -29,7 +31,7 @@ public class UserBOImpl implements UserBO {
             throw new LoginException("No account found with that username.");
         }
 
-        if (!BCrypt.checkpw(plainPassword, user.getPassword())) {
+        if (!PasswordUtil.verifyPassword(plainPassword, user.getPassword())) {
             throw new LoginException("Incorrect password. Please try again.");
         }
 
@@ -55,7 +57,7 @@ public class UserBOImpl implements UserBO {
             throw new RegistrationException("An account with that email already exists.");
         }
 
-        String hashedPassword = BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt());
+        String hashedPassword = PasswordUtil.hashPassword(dto.getPassword());
 
         User user = new User(dto.getUsername(), hashedPassword, dto.getRole(), dto.getEmail());
         return userDAO.save(user);
@@ -88,7 +90,10 @@ public class UserBOImpl implements UserBO {
             throw new LoginException("New password must be at least 6 characters.");
         }
 
-        user.setPassword(BCrypt.hashpw(newPlain, BCrypt.gensalt()));
+        if (!PasswordUtil.verifyPassword(oldPlain, user.getPassword())) {
+            throw new LoginException("Current password is incorrect.");
+        }
+        user.setPassword(PasswordUtil.hashPassword(newPlain));
         return userDAO.update(user);
     }
 

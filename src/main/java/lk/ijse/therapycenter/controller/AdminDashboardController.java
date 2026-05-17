@@ -26,24 +26,20 @@ public class AdminDashboardController {
 
     @FXML
     public void onTherapistsClicked(ActionEvent event) {
-        loadScreen("/lk/ijse/therapycenter/Therapist.fxml");
+        loadScreen("/view/Therapist.fxml");
     }
-
     @FXML
     public void onProgramsClicked(ActionEvent event) {
-        loadScreen("/lk/ijse/therapycenter/TherapyProgram.fxml");
+        loadScreen("/view/TherapyProgram.fxml");
     }
-
     @FXML
     public void onReportsClicked(ActionEvent event) {
-        loadScreen("/lk/ijse/therapycenter/AdminReport.fxml");
+        loadScreen("/view/AdminReport.fxml");
     }
-
     @FXML
     public void onProfileClicked(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/lk/ijse/therapycenter/UserProfile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/UserProfile.fxml"));
             Parent root = loader.load();
 
             UserProfileController profileCtrl = loader.getController();
@@ -63,8 +59,8 @@ public class AdminDashboardController {
     @FXML
     public void onLogoutClicked(ActionEvent event) {
         try {
-            Parent loginRoot = FXMLLoader.load(
-                    getClass().getResource("/lk/ijse/therapycenter/Login.fxml"));
+            Parent loginRoot = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+
             Stage stage = (Stage) lblWelcome.getScene().getWindow();
             stage.setScene(new Scene(loginRoot));
             stage.setTitle("Serenity Therapy Center - Login");

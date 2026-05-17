@@ -25,7 +25,7 @@ public class LoginController {
     @FXML
     public void initialize() {
         txtPasswordVisible.textProperty().bindBidirectional(
-                txtPassword.textProperty() instanceof javafx.beans.property.StringProperty ?
+                txtPassword.textProperty() != null ?
                         (javafx.beans.property.StringProperty) txtPassword.textProperty() : null
         );
 
@@ -55,9 +55,9 @@ public class LoginController {
         try {
             UserDTO loggedIn = userBO.login(username, password);
 
-            String fxmlFile = "ADMIN".equals(loggedIn.getRole()) ?
-                    "/lk/ijse/therapycenter/AdminDashboard.fxml" :
-                    "/lk/ijse/therapycenter/ReceptionistDashboard.fxml";
+            String fxmlFile = "ADMIN".equals(loggedIn.getRole())
+                    ? "/view/AdminDashboard.fxml"
+                    : "/view/ReceptionistDashboard.fxml";
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();

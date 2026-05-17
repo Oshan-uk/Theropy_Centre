@@ -4,7 +4,8 @@ import lk.ijse.therapycenter.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
+import java.io.*;
+import java.util.Properties;
 
 public class FactoryConfiguration {
 
@@ -17,7 +18,14 @@ public class FactoryConfiguration {
             try {
                 Configuration config = new Configuration();
 
-                config.configure();
+                Properties props = new Properties();
+                try (InputStream is = FactoryConfiguration.class
+                        .getClassLoader().getResourceAsStream("hibernate.properties")) {
+                    if (is == null)
+                        throw new RuntimeException("hibernate.properties not found in classpath!");
+                    props.load(is);
+                }
+                config.addProperties(props);
 
                 config.addAnnotatedClass(User.class);
                 config.addAnnotatedClass(Therapist.class);
@@ -29,7 +37,7 @@ public class FactoryConfiguration {
                 sessionFactory = config.buildSessionFactory();
 
             } catch (Exception e) {
-                System.err.println("Failed to build SessionFactory: " + e.getMessage());
+                System.err.println("SessionFactory creation failed: " + e.getMessage());
                 throw new ExceptionInInitializerError(e);
             }
         }
@@ -41,8 +49,7 @@ public class FactoryConfiguration {
     }
 
     public static void shutdown() {
-        if (sessionFactory != null && !sessionFactory.isClosed()) {
+        if (sessionFactory != null && !sessionFactory.isClosed())
             sessionFactory.close();
-        }
     }
 }

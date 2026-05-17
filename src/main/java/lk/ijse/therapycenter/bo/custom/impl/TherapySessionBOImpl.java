@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 
 public class TherapySessionBOImpl implements TherapySessionBO {
 
-    private final TherapySessionDAO sessionDAO = new TherapySessionDAOImpl();
-    private final PatientDAO patientDAO = new PatientDAOImpl();
-    private final TherapistDAO therapistDAO = new TherapistDAOImpl();
-    private final TherapyProgramDAO programDAO = new TherapyProgramDAOImpl();
+    private final TherapySessionDAO sessionDAO = DAOFactory.getDAO(DAOFactory.DAOTypes.THERAPY_SESSION);
+    private final PatientDAO patientDAO = DAOFactory.getDAO(DAOFactory.DAOTypes.PATIENT);
+    private final TherapistDAO therapistDAO = DAOFactory.getDAO(DAOFactory.DAOTypes.THERAPIST);
+    private final TherapyProgramDAO programDAO = DAOFactory.getDAO(DAOFactory.DAOTypes.THERAPY_PROGRAM);
 
     @Override
     public boolean bookSession(TherapySessionDTO dto) throws SessionConflictException {

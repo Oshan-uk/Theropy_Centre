@@ -1,6 +1,7 @@
 package lk.ijse.therapycenter.bo.custom.impl;
 
 import lk.ijse.therapycenter.bo.custom.PaymentBO;
+import lk.ijse.therapycenter.dao.DAOFactory;
 import lk.ijse.therapycenter.dao.custom.PatientDAO;
 import lk.ijse.therapycenter.dao.custom.PaymentDAO;
 import lk.ijse.therapycenter.dao.custom.TherapySessionDAO;
@@ -18,9 +19,9 @@ import java.util.stream.Collectors;
 
 public class PaymentBOImpl implements PaymentBO {
 
-    private final PaymentDAO paymentDAO = new PaymentDAOImpl();
-    private final PatientDAO patientDAO = new PatientDAOImpl();
-    private final TherapySessionDAO sessionDAO = new TherapySessionDAOImpl();
+    private final PaymentDAO paymentDAO = DAOFactory.getDAO(DAOFactory.DAOTypes.PAYMENT);
+    private final PatientDAO patientDAO = DAOFactory.getDAO(DAOFactory.DAOTypes.PATIENT);
+    private final TherapySessionDAO sessionDAO = DAOFactory.getDAO(DAOFactory.DAOTypes.THERAPY_SESSION);
 
     @Override
     public boolean processPayment(PaymentDTO dto) throws PaymentException {
